@@ -25,7 +25,7 @@ usage() { sed -n '4,17s/^#   //p' "$0" >&2; exit 2; }
 ref=2.1.1791890110
 luajit_ref() {
   if [ -z "$LUAJIT" ]; then
-    if command -v nix >/dev/null && p=$(nix build "$here/..#luajit" --no-link --print-out-paths 2>/dev/null); then
+    if command -v nix >/dev/null && p=$(nix build "$here#luajit" --no-link --print-out-paths 2>/dev/null); then
       LUAJIT=$p/bin/luajit
     else LUAJIT=$(command -v luajit) || { echo "lua-lean needs nix or luajit on the PATH" >&2; exit 1; }; fi
     shown=
